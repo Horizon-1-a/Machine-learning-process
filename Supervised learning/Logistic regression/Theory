@@ -1,12 +1,54 @@
-Cho một bài toán khác : cho số giờ học của học sinh với xác xuất học sinh đó qua môn.
-Rõ ràng bài toán ấy không thể làm theo Linear regression thông thường vì giá trị của hàm tuyến tính là -vô cực đến + vô cực mà xác xuất chỉ chạy từ 0 đến 1 thôi
-Khi ấy ta cần một cách tiếp cận khác.
-Một ý tưởng là sẽ cho ánh xạ tương đương từ - vô cực <=> 0, còn + vô cực <=> 1, các giá trị khác sẽ đi theo sau đó  (1)
+Linear Regression:
+    z = wx + b
 
-*Giả sử xác xuất của trường hợp cụ thể nào đó là P
-Ta cần P = hàm gì đó thỏa mãn tính chất (1)
-Một trong những hàm hay ho mà có tính chất đó là hàm log (log là ln đấy)
-Nhưng nếu lấy luôn giá trị ln(P) thì khi ln(P) = 32 chẳng hạn thì P = e ^ 32, vượt mức.
-Chính vì vậy nên ta cần xây thêm một hàm nào đó ở bên trong mà thỏa mãn tính chất
-và hàm thỏa mãn là hàm Sigmoid : P = 1 / (1 + e ^ -z) với z là hàm tuyến tính như trong linear regression
+Vấn đề:
+    z ∈ (-∞, +∞)
+    nhưng xác suất ∈ (0, 1)
 
+=> Cần một phép biến đổi z -> p
+
+Ta muốn:
+    z = -∞  <=> p -> 0
+    z =  0  <=> p = 0.5
+    z = +∞  <=> p -> 1
+
+Logit:
+    z = ln(p / (1-p))
+
+Hàm ngược:
+    p = 1 / (1 + e^(-z))
+      = sigmoid(z)
+
+-----------------------------------
+
+Bây giờ đã có xác suất p.
+
+Nhưng làm thế nào tìm w?
+
+Ta muốn:
+    model gán xác suất cao cho những
+    kết quả thực tế đã xảy ra.
+
+Với mỗi mẫu:
+    P(y|x,w) = p^y (1-p)^(1-y)
+
+Với toàn bộ dataset:
+    L(w) = ∏ P(y_i|x_i,w)
+
+=> Maximum Likelihood:
+    maximize L(w)
+
+Để tối ưu thuận tiện:
+    maximize log L(w)
+
+Vì log biến tích thành tổng.
+
+Đổi dấu để thành bài toán minimize:
+
+    minimize -log L(w)
+
+=> Binary Cross Entropy
+
+Và cuối cùng:
+
+    dLoss/dz = p - y
