@@ -1,3 +1,5 @@
+## Optimizing the error rate of validation dataset
+
 import numpy as np
 
 def relu(z):
@@ -15,23 +17,38 @@ def one_hot_encode(y, k):
 def train_model(x, y, epochs, learning_rate, lim):
     print (f'Training sample = {lim}')
     #initializing
-    x = x[:, :lim]
-    a, n = x.shape
-    x_bar = np.vstack((x, np.ones((1, n))))
-    y1 = y[:lim]
+    idx = np.random.permutation(lim)
+
+    x = x[:, idx]
+    y = y[idx]
+    a,_ = x.shape
+    validation_size = int(lim * 0.15)
+    training_size = lim - validation_size
+    x_validation = x[:, :validation_size]
+    x_validation = np.vstack((x_validation, np.ones((1, validation_size))))
+    x_training = x[:, validation_size : lim]
+    x_bar = np.vstack((x_training, np.ones((1, training_size))))
+
+
+    y_validation_ex = y[:validation_size]
+    y_training_ex = y[validation_size:lim]
+    y = y[validation_size:lim]
     y = one_hot_encode(y, 10)
-    y = y[:, :lim]
+
     w1 = np.random.randn(256, a + 1) * np.sqrt(2 / a)
     w2 = np.random.randn(10, 257) * np.sqrt(2 / 256)
     #Saving best option
     w1_best = w1.copy()
     w2_best = w2.copy()
-    acc_best = 0.0
+    acc_best_training = 0.0
+    acc_best_validation = 0.0
+    acc_training = 0.0
+    acc_validation = 0.0
     #main function
     for i in range(epochs):
-        shuffle = np.random.permutation(n)
-        for j in range (0, n, 50):
-            batch_size = min(n, j + 50) - j
+        shuffle = np.random.permutation(training_size)
+        for j in range (0, training_size, 50):
+            batch_size = min(training_size, j + 50) - j
             idx = shuffle[j:j + batch_size]
             x_cur = x_bar[:, idx]
             y_cur = y[:, idx]
@@ -52,23 +69,33 @@ def train_model(x, y, epochs, learning_rate, lim):
             #update
             w1 -= dw1 * learning_rate
             w2 -= dw2 * learning_rate
-
+        #update
         if True:
-            z1 = w1 @ x_bar
-            a1 = relu(z1)
-            a1_bar = np.vstack((a1, np.ones((1, n))))
-            z2 = w2 @ a1_bar
-            a2 = softmax(z2)
-            loss = -np.mean(np.sum(y * np.log(a2 + 1e-8), axis=0))
-            y_pred = np.argmax(a2, axis= 0)
-            acc = np.mean(y_pred == y1)
+            #training:
+            z1_t = w1 @ x_bar
+            a1_t = relu(z1_t)
+            a1_bar_t = np.vstack((a1_t, np.ones((1, training_size))))
+            z2_t = w2 @ a1_bar_t
+            a2_t = softmax(z2_t)
+            y_pred_t = np.argmax(a2_t, axis= 0)
+            acc_training = np.mean(y_pred_t == y_training_ex)
+            #validation
+            z1_v = w1 @ x_validation
+            a1_v = relu(z1_v)
+            a1_bar_v = np.vstack((a1_v, np.ones((1, validation_size))))
+            z2_v = w2 @ a1_bar_v
+            a2_v = softmax(z2_v)
+            y_pred_v = np.argmax(a2_v, axis= 0)
+            acc_validation = np.mean(y_pred_v == y_validation_ex)
 
-            print (f'epochs i = {i}: Loss = {loss}, accuracy = {acc}')
-            if acc > acc_best:
-                acc_best = acc
-                w1_best = w1
-                w2_best = w2
-                print (f'--> Updating best so far, accuracy = {acc_best}')
+            print(f'Epoch {i}: acc_training = {acc_training}, acc_validation = {acc_validation}')
+
+            if (acc_validation >= acc_best_validation):
+                acc_best_training = acc_training
+                acc_best_validation = acc_validation
+                w1_best = w1.copy()
+                w2_best = w2.copy()
+                print (f'--> Updating best so far, acc_training = {acc_training}, acc_validation = {acc_validation}')
     return w1_best, w2_best
 def predict(input, w1, w2, test):
     #forward pass
