@@ -9,10 +9,10 @@ Khi xây dựng một mô hình, có thể sẽ gặp hiện tượng training e
 
 ## Solution
 ### 1.Validation:
-**Spitting the training dataset into two disjoint set: training and validation, then trying to minimize the validation error
+- Spitting the training dataset into two disjoint set: training and validation, then trying to minimize the validation error
 ### 2.Regularization
-**Adjusting model to avoid overfitting, that is reducing the complexity of the model, with the slight increase of loss as a trade-off
-  **[Some regularization techniques](https://machinelearningcoban.com/2017/03/04/overfitting/)
+- Adjusting model to avoid overfitting, that is reducing the complexity of the model, with the slight increase of loss as a trade-off
+  - [Some regularization techniques](https://machinelearningcoban.com/2017/03/04/overfitting/)
 
 
 
