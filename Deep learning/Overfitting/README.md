@@ -5,7 +5,7 @@ Khi xây dựng một mô hình, có thể sẽ gặp hiện tượng training e
 * Training set: Set using for training the model
 * Validation set: Set extracted from the original training set, independent from the current training set. Using to determine whether the model has the good estimation without using the test set(Has the same meaning with the test set
 * Test set: Using to estimate the ability of model
- --> Purpose: Minimizing the training error and validation error
+   --> Purpose: Minimizing the training error and validation error
 
 ## Solution
 * Validation
