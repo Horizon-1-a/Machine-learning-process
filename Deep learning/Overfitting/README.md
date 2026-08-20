@@ -7,7 +7,7 @@ Khi xây dựng một mô hình, có thể sẽ gặp hiện tượng training e
 * Test set: Using to estimate the ability of model
  --> Purpose: Minimizing the training error and validation error
 
-##Solution
+#Solution
 1.Validation
 -Spitting the training dataset into two disjoint set: training and validation, then trying to minimize the validation error
 2.Regularization
