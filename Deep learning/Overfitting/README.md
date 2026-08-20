@@ -8,9 +8,9 @@ Khi xây dựng một mô hình, có thể sẽ gặp hiện tượng training e
  --> Purpose: Minimizing the training error and validation error
 
 ## Solution
-*Validation
+* Validation
 -Spitting the training dataset into two disjoint set: training and validation, then trying to minimize the validation error
-*Regularization
+* Regularization
 - Adjusting model to avoid overfitting, that is reducing the complexity of the model, with the slight increase of loss as a trade-off
   Some regularization techniques:
 
