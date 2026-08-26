@@ -15,6 +15,7 @@ def one_hot_encode(y, k):
         y = np.eye(k)[y].T
     return y
 def train_model(x, y, epochs, learning_rate, lim):
+    np.random.seed(42)
     print (f'Training sample = {lim}')
     #initializing
     idx = np.random.permutation(lim)
@@ -22,6 +23,10 @@ def train_model(x, y, epochs, learning_rate, lim):
     x = x[:, idx]
     y = y[idx]
     a,_ = x.shape
+
+    t1 = np.diag(np.full(256, 0.05))
+    t2 = np.diag(np.full(10, 0.05))
+
     validation_size = int(lim * 0.15)
     training_size = lim - validation_size
     x_validation = x[:, :validation_size]
@@ -37,7 +42,7 @@ def train_model(x, y, epochs, learning_rate, lim):
 
     w1 = np.random.randn(256, a + 1) * np.sqrt(2 / a)
     w2 = np.random.randn(10, 257) * np.sqrt(2 / 256)
-    #Saving best option
+    #Saving best option 
     w1_best = w1.copy()
     w2_best = w2.copy()
     acc_best_training = 0.0
@@ -60,15 +65,18 @@ def train_model(x, y, epochs, learning_rate, lim):
             a2 = softmax(z2)
 
             #backpropagation
+            w2_r = np.hstack((w2[:, :-1], np.zeros((10, 1))))
+            w1_r = np.hstack((w1[:, : -1], np.zeros((256, 1))))
             dz2 = 1 / batch_size * (a2 - y_cur)
-            dw2 = dz2 @ a1_bar.T
+            dw2 = dz2 @ a1_bar.T + 1 / batch_size * (t2.T @ (t2 @ w2_r))
             da1 = w2[:, :-1].T @ dz2
             dz1 = d_relu(z1) * da1
-            dw1 = dz1 @ x_cur.T
+            dw1 = dz1 @ x_cur.T + (t1.T @ (t1 @ w1_r)) * 1 / batch_size
 
             #update
             w1 -= dw1 * learning_rate
             w2 -= dw2 * learning_rate
+
         #update
         if True:
             #training:
