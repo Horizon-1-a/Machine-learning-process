@@ -12,7 +12,11 @@ Khi xây dựng một mô hình, có thể sẽ gặp hiện tượng training e
 - Spitting the training dataset into two disjoint set: training and validation, then trying to minimize the validation error
 ### 2.Regularization
 - Adjusting model to avoid overfitting, that is reducing the complexity of the model, with the slight increase of loss as a trade-off
-  - [Some regularization techniques](https://machinelearningcoban.com/2017/03/04/overfitting/)
+**1.1** L2 regularization
+  -Algorithm: Add the norm 2 of weight when computing the dz
+      * [Ex](https://machinelearningcoban.com/2017/03/04/overfitting/#-%5C%5Cl%5C%5C-regularization)
+  -Meaning: reducing the size of the weight by fine the ones having the large absolute value
+  
 
 
 
