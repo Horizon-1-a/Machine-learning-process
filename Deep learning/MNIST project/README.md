@@ -8,6 +8,7 @@ A simple MNIST project from scracht using NUMPY, for practicing purpose
 - Backpropagation
 - Gradient descent
 - One-hot encoding
+- The effect of some regularization technique such as l2, Tikhonov on the accuracy rate
 
 ## Model
 
