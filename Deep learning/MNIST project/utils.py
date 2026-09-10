@@ -25,28 +25,22 @@ def softmax(z):
     z = np.exp(z)
     z = z / np.sum(z, axis = 0, keepdims = True)
     return z;
-def train(x, y, epochs, learning_rate, lim, rate):
-    a, n = x.shape
-    lim = min(lim, n)
-    n = min(lim, n)
+def train(x_train, y_train, x_validate, y_validate, epochs, learning_rate, lim):
+    np.random.seed(42)
+    a = x_train.shape[0]
     print(f'lim = {lim}')
 
     #initializing
     idx = np.random.permutation(lim)
-    x = x[:, idx]
-    y = y[idx]
-    y = one_hot_encode(y, 10)
 
-    n_train = int(n * rate)
-    n_validate = n - n_train
+    y_train = one_hot_encode(y_train, 10)
 
-    x_train = x[:, :n_train]
+    n_train = x_train.shape[1]
+    n_validate = x_validate.shape[1]
+
     x_bar = np.vstack((x_train, np.ones((1, n_train))))
-
-    x_validate = x[:, n_train:]
     x_validate = np.vstack((x_validate, np.ones((1, n_validate))))
-    y_train = y[:, :n_train]
-    y_validate = y[:, n_train: ]
+
 
     w1 = np.random.randn(256, a + 1) * np.sqrt(2 / a)
     w2 = np.random.randn(10, 257) * np.sqrt(2 / 256)
@@ -95,15 +89,14 @@ def train(x, y, epochs, learning_rate, lim, rate):
         y_truth_t = np.argmax(y_train, axis = 0)
         acc_training = np.mean(y_pred_t == y_truth_t)
 
-        #validation
+        #validating
         z1_v = w1 @ x_validate
         a1_v = relu(z1_v)
         a1_bar_v = np.vstack((a1_v, np.ones((1, n_validate))))
         z2_v = w2 @ a1_bar_v
         a2_v = softmax(z2_v)
         y_pred_v = np.argmax(a2_v, axis= 0)
-        y_truth_v = np.argmax(y_validate, axis= 0)
-        acc_validation = np.mean(y_pred_v == y_truth_v)
+        acc_validation = np.mean(y_pred_v == y_validate)
 
         print(f'Epoch {i}th: acc_training = {acc_training}, acc_validation = {acc_validation}')
 
