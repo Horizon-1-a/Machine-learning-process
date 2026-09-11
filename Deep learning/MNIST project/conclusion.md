@@ -34,7 +34,9 @@ I have observed some effects:
 - Reducing the capacity of model, therefore lower the computational cost
 - Need to consider trade-off: Accuracy >< Capacity
 
-  
+## Next step:
+- Learning pytorch to build MlP by this machine learning library
+- This will allow comparison between manually implemented training process and deep learning framework, before reaching covolutional neural network
   
 
 
