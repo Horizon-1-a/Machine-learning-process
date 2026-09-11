@@ -30,7 +30,10 @@ I have observed some effects:
   ### 3.1 Early stopping
   - Using to save the model having the best perfomace having the highest validation accuracy rate, preventing them from reaching overfitting
   - Because the validation set may have the same meaning as the test set, this method can enhance the output considerably
-##
+## *new* 4.PCA
+- Reducing the capacity of model, therefore lower the computational cost
+- Need to consider trade-off: Accuracy >< Capacity
+
   
   
 
