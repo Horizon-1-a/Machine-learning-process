@@ -1,0 +1,10 @@
+# grad:
+- pytorch automatically saves the value of gradient of each variables when apply y.backward()
+- Applying gradient descend requires setting gradient to be zero if I train model manually:
+  "with torch.no_grad()"
+# optimizer:
+- An object retain group of model to train and the optimizing algorithms using for gradient descend
+- Do not need to call backward because of autograd, but still have to call zero_grad()
+- Updating by the call .step()
+- 
+  
