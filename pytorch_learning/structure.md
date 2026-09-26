@@ -7,7 +7,13 @@
 - Do not need to call backward because of autograd, but still have to call zero_grad()
 - Updating by the call .step()
 # module:
-- A abstaction for one component of a neural network, including the submodels and the activities of them.
-** An analogy:
-  If we consider neural network as multiple of many mappings, the modules is the mapping afterward, F
+- A abstaction for one component of a neural network, including the submodels and its feature
+
+Model tree:
+
+Model |-> submodel |->....
+      |            |->....
+      |-> Features(parameter, ...)
+
+
   
