@@ -19,6 +19,8 @@
   - Doing the same operation as an linear function
   - Receive (out_feature, in_feature) as input
   ** Caution: This module's forward uses for sample x feature dataset, so need to take the transpose the data before use and transpose the result to get the desired results.
+  ## Sequential:
+  - Register sequence of module + determine the computation order when calling forward
 
 
   
