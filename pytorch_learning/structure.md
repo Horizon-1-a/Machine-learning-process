@@ -21,6 +21,14 @@
   ** Caution: This module's forward uses for sample x feature dataset, so need to take the transpose the data before use and transpose the result to get the desired results.
   ## Sequential:
   - Register sequence of module + determine the computation order when calling forward
+  ## State_dict():
+  Clarification: Architecture, Parameters, State:
+    - Architecture: Describe the structure and the computation of model, such as submodel and how they are linked.
+    - Parameter: Tensors that are usually registered to learn through training
+    - Model State: Preserve parameter, with persistent buffer which not update throughout training period. The key-value show their relation in the module tree
+    + Optimizer state: Preseve state and configuration optimizer need for optimizing operation, with hyperparameter 
+    
+  
 
 
   
