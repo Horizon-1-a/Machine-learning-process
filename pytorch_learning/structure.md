@@ -39,14 +39,19 @@
 
   ## Dataset, Dataloader:
 
-  ## Dataset:
+  ### Dataset:
   - A class allow access to input data and corresponding output data.
       ### Reason:
         - A class enable access to data by file path, without having saved data direcly into Memory
         - Can modify data before processing, achieve multiple result in the same epoch
         - Synthesize with dataloader to take advantage of num-works
-  ## Dataloader:
+  ### Dataloader:
   - Turn Dataset into iterable version of mini-batch, also take resposible for shuffle and other data loading thing
+
+  ## Loss function:
+  - Having the same operation as from-scratch version
+  - Paying attention to container format: np array >< tensor
+
 
     
     
