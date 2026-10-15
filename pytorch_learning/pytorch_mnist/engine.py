@@ -16,9 +16,11 @@ def evaluate(model, val_dataloader, best_accuracy):
         z = torch.argmax(z, dim= 1)
         n_acc = n_acc + (z == y).sum().item()
         n_all = n_all + y.size(0)
+    print (f'   validate accuracy : {n_acc / n_all}')
     if (best_accuracy < n_acc / n_all):
         best_accuracy = n_acc / n_all
         best_model = copy.deepcopy(model.state_dict())
+        print(f'-> preserved model')
     return best_model
 def test_phase(model, test_dataloader):
     t = 0

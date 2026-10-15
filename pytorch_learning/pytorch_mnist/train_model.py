@@ -16,6 +16,7 @@ best_acc = 0.0
 # train 
 for i in range (epochs):
     Train_model.train()
+    print (f'epoch {i}: ')
     for x, y_true in train_loader:
         z = Train_model(x)
         train_one_model(z, y_true= y_true, loss_fn= loss_fn, optimizer= optimizer)
