@@ -1,0 +1,13 @@
+# Môi trường ảo Python
+.venv/
+venv/
+env/
+
+# Thư mục dữ liệu
+data/
+
+# Cache và IDE
+__pycache__/
+.vscode/
+.idea/
+.DS_Store
