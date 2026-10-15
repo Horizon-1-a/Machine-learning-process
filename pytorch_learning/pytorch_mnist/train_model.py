@@ -9,7 +9,7 @@ Train_model = Mymodel(256)
 best_model = Mymodel(256)
 optimizer = torch.optim.SGD(Train_model.parameters(), lr = 0.001)
 loss_fn = nn.CrossEntropyLoss()
-epochs = 1000
+epochs = 10
 
 best_acc = 0.0
 
