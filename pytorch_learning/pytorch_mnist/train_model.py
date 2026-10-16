@@ -35,13 +35,13 @@ for i in range (epochs):
         z = Train_model(x)
         train_epochs += train_one_model(z, y_true= y_true, loss_fn= loss_fn, optimizer= optimizer)
         train_num += 1
-    train_loss.append(train_epochs / train_num)
+    train_loss = np.append(train_loss, train_epochs / train_num)
 
     #validating 
     with torch.no_grad():
         Train_model.eval()
         res, cur_acc, validate_loss = evaluate(val_dataloader= val_loader, model= Train_model, best_accuracy= best_acc)
-        val_loss.append(validate_loss)
+        val_loss = np.append(val_loss, validate_loss)
         if (res != None):
             best_model.load_state_dict(res)
             best_model.train()
