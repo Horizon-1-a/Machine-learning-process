@@ -5,30 +5,39 @@ This project develops MLP neural network for classifying handwritten digits from
 ## Project Structure
 
 pytorch_mnist/
-├── data.py            # Download and split the dataset; create DataLoaders
-├── model.py           # Define the MLP architecture
-├── engine.py          # Implement training and evaluation functions
-├── train_model.py     # Run training and save the best checkpoint
-├── requirements.txt   # List project dependencies
-├── README.md          # Project documentation
-├── data/              # Downloaded dataset (not tracked by Git)
-└── checkpoints/       # Saved model checkpoints (not tracked by Git)
+- data.py            # Download and split the dataset; create DataLoaders
+- model.py           # Define the MLP architecture
+- engine.py          # Implement training and evaluation functions
+- train_model.py     # Run training and save the best checkpoint
+- requirements.txt   # List project dependencies
+- README.md          # Project documentation
+- data/              # Downloaded dataset (not tracked by Git)
+- checkpoints/       # Saved model checkpoints (not tracked by Git)
 
 ## Model Architechture
 
 The classifier uses the following MLP architecture:
 
 Input image (28 × 28)
+
         ↓
+
       Flatten
+
         ↓
+
   Linear (784 → 256)
+
         ↓
        ReLU
+
         ↓
   Linear (256 → 10)
+
         ↓
+
     10 logits
+
 
 ## Dataset
 
@@ -46,18 +55,19 @@ Download from MNIST dataset from torchvision
 
 ## How to run
 
-1. Clone repository
-!git clone https://github.com/Horizon-1-a/Machine-learning-process.git
+**1. Clone repository**
 
-%cd Machine-learning-process/pytorch_learning/pytorch_mnist
+        - !git clone https://github.com/Horizon-1-a/Machine-learning-process.git
 
-2. Install dependencies
+        - %cd Machine-learning-process/pytorch_learning/pytorch_mnist
 
-python -m pip install -r requirements.txt
+**2. Install dependencies**
 
-3. Train the model
+        - python -m pip install -r requirements.txt
 
-!python train_model.py
+**3. Train the model**
+
+        - !python train_model.py
 
 ## Requirements:
 - python 3.11.x
