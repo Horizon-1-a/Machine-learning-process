@@ -33,7 +33,7 @@ for i in range (epochs):
             best_model.train()
             best_acc = cur_acc
 
-real_acc = test_phase(model= best_model, test_dataloader= test_loader)
+real_acc = test_phase(model= best_model, test_dataloader= test_loader, device= device)
 print (real_acc)
             
 
