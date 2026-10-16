@@ -3,7 +3,6 @@ from torch import nn
 import copy
 
 def train_one_model(z, y_true, loss_fn, optimizer):
-    optimizer.zero_grad()
     loss = loss_fn(z, y_true)
     loss.backward()
     optimizer.step()
