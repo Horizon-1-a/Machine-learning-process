@@ -6,6 +6,7 @@ def train_one_model(z, y_true, loss_fn, optimizer):
     loss = loss_fn(z, y_true)
     loss.backward()
     optimizer.step()
+    return loss.item()
 
 def evaluate(model, val_dataloader, best_accuracy):
     n_acc = 0
