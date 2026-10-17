@@ -47,12 +47,18 @@ Download from MNIST dataset from torchvision
 ----------------------
 ## Result and Performance
 
-- Model proves to gradually optimize the accuracy, starts from approximately 90% to roughly 98% after 30 epochs:
-    - Best Validation accuracy: 97.46%
-    - Test accuracy: 97.89%
+- The model was trained for 30 epochs
 
-- Overfitting has not yet systematically investigated. Need further analysis of training and validation lost and accuracy curves
+|Metric                  |Result    |
+| ---------------------- | ------- |
+|Best validation accuracy|97.42%   |
+|Test accuracy           |97.89%   |
 
+![Train and validation loss](asset/loss_plot.png)
+
+
+- At first 30 epochs, model shows optimal fit with training loss and validation loss gradually decline, eventually converge at a low level(approx 0.05 and 0.1). The train loss curve under the validation loss at a acceptable generation gap.
+ 
 ## How to run
 
 **1. Clone repository**
@@ -74,5 +80,6 @@ Download from MNIST dataset from torchvision
 - pytorch
 - torchvision
 - numpy
+- matplotlib
 
 
