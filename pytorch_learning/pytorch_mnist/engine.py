@@ -18,18 +18,20 @@ def evaluate(model, val_dataloader, best_accuracy, loss_fn):
     for x, y in val_dataloader:
         x, y = x.to(device), y.to(device)  # Đưa data lên GPU
         z = model(x)
+
+        loss_mean += loss_fn(z, y)
+        n_iter += 1
+
         z = torch.argmax(z, dim=1)
 
         n_acc = n_acc + (z == y).sum().item()
         n_all = n_all + y.size(0)
 
-        loss_mean += loss_fn(z, y)
-        n += 1
         
     current_acc = n_acc / n_all
     print(f'   validate accuracy : {current_acc}')
 
-    loss_mean /= n
+    loss_mean /= n_iter
     
     if best_accuracy < current_acc:
         best_accuracy = current_acc
