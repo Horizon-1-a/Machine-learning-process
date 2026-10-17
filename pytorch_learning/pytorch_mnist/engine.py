@@ -19,7 +19,8 @@ def evaluate(model, val_dataloader, best_accuracy, loss_fn):
         x, y = x.to(device), y.to(device)  # Đưa data lên GPU
         z = model(x)
 
-        loss_mean += loss_fn(z, y)
+        loss = loss_fn(z, y)
+        loss_mean += loss.item()
         n_iter += 1
 
         z = torch.argmax(z, dim=1)
