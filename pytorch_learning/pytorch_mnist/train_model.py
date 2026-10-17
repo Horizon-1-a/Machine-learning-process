@@ -49,7 +49,8 @@ for i in range (epochs):
 
 real_acc = test_phase(model= best_model, test_dataloader= test_loader, device= device)
 print (real_acc)
-            
+
+epochs = np.arange(1, len(train_loss) + 1)
 # Thiết lập biểu đồ
 plt.figure(figsize=(9, 5))
 plt.plot(epochs, train_loss, 'bo-', label='Training Loss', linewidth=2)
