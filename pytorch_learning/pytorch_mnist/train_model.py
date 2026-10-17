@@ -40,7 +40,7 @@ for i in range (epochs):
     #validating 
     with torch.no_grad():
         Train_model.eval()
-        res, cur_acc, validate_loss = evaluate(val_dataloader= val_loader, model= Train_model, best_accuracy= best_acc)
+        res, cur_acc, validate_loss = evaluate(val_dataloader= val_loader, model= Train_model, best_accuracy= best_acc, loss_fn= loss_fn)
         val_loss = np.append(val_loss, validate_loss)
         if (res != None):
             best_model.load_state_dict(res)

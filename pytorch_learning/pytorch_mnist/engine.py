@@ -8,28 +8,35 @@ def train_one_model(z, y_true, loss_fn, optimizer):
     optimizer.step()
     return loss.item()
 
-def evaluate(model, val_dataloader, best_accuracy):
+def evaluate(model, val_dataloader, best_accuracy, lost_fn):
     n_acc = 0
     n_all = 0
     best_model_state = None
     device = next(model.parameters()).device
-    
+    loss_mean = 0.0
+    n_iter = 0
     for x, y in val_dataloader:
         x, y = x.to(device), y.to(device)  # Đưa data lên GPU
         z = model(x)
         z = torch.argmax(z, dim=1)
+
         n_acc = n_acc + (z == y).sum().item()
         n_all = n_all + y.size(0)
+
+        loss_mean += lost_fn(z, y)
+        n += 1
         
     current_acc = n_acc / n_all
     print(f'   validate accuracy : {current_acc}')
+
+    loss_mean /= n
     
     if best_accuracy < current_acc:
         best_accuracy = current_acc
         best_model_state = copy.deepcopy(model.state_dict())
         print(f'-> preserved model with acc: {best_accuracy}')
         
-    return best_model_state, current_acc
+    return best_model_state, current_acc, loss_mean
 
 def test_phase(model, test_dataloader, device):
     t = 0
