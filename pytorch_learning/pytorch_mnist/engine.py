@@ -8,7 +8,7 @@ def train_one_model(z, y_true, loss_fn, optimizer):
     optimizer.step()
     return loss.item()
 
-def evaluate(model, val_dataloader, best_accuracy, lost_fn):
+def evaluate(model, val_dataloader, best_accuracy, loss_fn):
     n_acc = 0
     n_all = 0
     best_model_state = None
@@ -23,7 +23,7 @@ def evaluate(model, val_dataloader, best_accuracy, lost_fn):
         n_acc = n_acc + (z == y).sum().item()
         n_all = n_all + y.size(0)
 
-        loss_mean += lost_fn(z, y)
+        loss_mean += loss_fn(z, y)
         n += 1
         
     current_acc = n_acc / n_all
