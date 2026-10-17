@@ -62,7 +62,7 @@ plt.xlabel('Epochs', fontsize=12)
 plt.ylabel('Loss Value', fontsize=12)
 plt.grid(True, linestyle=':', alpha=0.7)
 plt.legend(fontsize=11)
-plt.show()
-
+plt.savefig('loss_plot.png', dpi=300, bbox_inches='tight')
+print("Đã lưu biểu đồ thành công vào file loss_plot.png!")
 
 
