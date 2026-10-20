@@ -11,7 +11,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 train_loader, val_loader, test_loader = get()
 Train_model = Mymodel(256).to(device)
 best_model = Mymodel(256).to(device)
-optimizer = torch.optim.SGD(Train_model.parameters(), lr = 0.1, weight_decay=0.0)
+optimizer = torch.optim.SGD(Train_model.parameters(), lr = 0.1, weight_decay=0.00001)
 loss_fn = nn.CrossEntropyLoss()
 epochs = 30
 
