@@ -112,7 +112,7 @@ def train(x, y, epochs, learning_rate, lim, rate):
             acc_best_validation = acc_validation
             w1_best = w1.copy()
             w2_best = w2.copy()
-            print (f'--> Updating best so far, acc_training = {acc_training}, acc_validation = {acc_validation}')
+            print (f'--> Updating, acc_training = {acc_training}, acc_validation = {acc_validation}')
     return w1_best, w2_best
 
 def predict(input, w1, w2, test):
