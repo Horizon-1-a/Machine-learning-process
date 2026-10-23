@@ -54,7 +54,7 @@ Download from MNIST dataset from torchvision
 |Best validation accuracy|97.42%   |
 |Test accuracy           |97.89%   |
 
-![Train and validation loss](asset/loss_plot.png)
+![Train and validation loss](asset/loss_plot_0.png)
 
 
 - At first 30 epochs, model shows optimal fit with training loss and validation loss gradually decline, eventually converge at a low level(approx 0.05 and 0.1). The train loss curve under the validation loss at a acceptable generation gap.
