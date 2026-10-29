@@ -1,8 +1,0 @@
-Giờ ta nâng cấp bài toán phức tạp hơn: xác định xem với bộ dữ liệu x thì sẽ cho ra nhãn nào trong k nhãn đánh số từ 0 đến k - 1
-Naive method: dùng k hàm sigmoid cho z = w @ x, sau đó làm như logistic regression
-
-Vấn đề: Xác xuất tổng không đảm bảo bằng 1 ==> Cần phép biến đổi z khác.
-
-Giải pháp: lấy z = e ^ z để triệt tiêu dấu âm, sau đó lấy p_i = e ^ z_i / Tổng các z_i để đảm bảo các xác xuẩt tổng bằng 1
-
-Khi đó tìm cross-entropy và giải để tìm hàm w hợp lý như logistic regression
