@@ -1,0 +1,20 @@
+Có dạng input -> (đầu vào qua hàm w_i thành z_i -> qua activation thành a_i) -> ...... - > activation output cho ra output
+1. Neuron:
+-Là một phép tính 
+Cho dễ hiểu thì một phép f(x_i) chính là một neuron
+hay w thuộc R (n * M ) thì n chính là số neuron
+2. Layer
+- Chính là một bộ gồm nhiều hàm W hoạt động song song cùng một lúc
+- Hidden layer là các layer nằm ở giữa input và output, không trả về kết quả trực tiếp
+3. Weight and biases
+-Là tập hợp các tham số trong các hàm W của các layers
+4.Activation
+-Là hàm được đặt trong các layer nhằm biến dữ liệu trong units thành kết quả mình muốn truyền đi
+VD: sigmoid, ReLU, ...
+- Có thể activation chính là hàm y = y nếu không đặt các activation phi tuyến vào 
+
+**Lưu ý:
+- Neural network sẽ tự động căn chỉnh các trọng số trong neurons sao cho tối ưu nên khái niệm phân chia công việc giữa các neurons 
+là tương đối mờ nhạt
+- Số lượng neuron và tham số càng lớn, mô hình càng có khả năng biểu diễn nhiều hàm phức tạp. Tuy vậy, nếu quá phức tạp, mô hình 
+sẽ lựa chọn nhớ luôn các dữ liệu được trained thay vì tìm ra quy luật, điều đó sẽ dẫn đến hiện tượng overfitting
