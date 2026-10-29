@@ -1,0 +1,2 @@
+Nói chung là cố gắng tìm một hàm tuyến tính (do dễ tìm, dễ trúng thưởng nhưng khá là nhạy cảm với nhiễu) gần nhất với các dữ liệu được trained
+*** Bias-trick: Gom hết tất cả các biến w vào cùng một vector w, đồng thời thêm vào vector x một hàng toàn số 1 để thuận tiện lưu trữ trong matrix
