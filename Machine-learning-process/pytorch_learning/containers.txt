@@ -1,1 +1,0 @@
-The container of pytorch is tensor, which plays the same role as the np array of numpy 
