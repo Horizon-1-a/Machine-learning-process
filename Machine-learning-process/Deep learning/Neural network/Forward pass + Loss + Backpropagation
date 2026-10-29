@@ -1,0 +1,11 @@
+Xét MLP hai layers: input -->  truyền vào w1 ra z1, qua activation ra a1 --> truyền vào w2 ra z2, qua activation ra a2 --> output
+1. Forward pass:
+- Là quá trình truyền dữ liệu để tìm kết quả
+- Tính giống như tìm kết quả hàm hợp: Giải từ trong ra ngoài
+2. Loss (L)
+- Tính toán độ lệch kết quả mạng dự đoán so với dữ liệu thực tế
+Thường dùng những hàm như Mse, cross-entropy
+3. Backpropagation
+Tính gradient của L qua từng ẩn theo thứ tự: L -> a2 -> w2
+                                                      -> a1 -> w1
+Lí do tính ngược: kết quả gradient của cái sau phục vụ cho cái trước do hàm sau là hàm theo ẩn của các phần tử trước
