@@ -18,7 +18,7 @@ class CNN (nn.Module):
             nn.Flatten(), 
             nn.Linear(in_features= 64 * 7 * 7, out_features= hidden_size, bias= True), 
             nn.ReLU(), 
-            nn.Linear(in_features= 128, out_features= hidden_size, bias= True)
+            nn.Linear(in_features= hidden_size, out_features= 10, bias= True)
         )
     def forward(self, x):
         x = self.cnn(x)
