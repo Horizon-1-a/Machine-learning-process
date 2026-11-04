@@ -5,17 +5,20 @@ from torchvision import datasets, transforms
 
 torch.manual_seed(42)
 def get():
+    transform = transforms.ToTensor()
 
     full_train = datasets.MNIST(
         root= "./data",
         train= True,
         download= True,
+        transform= transform
     )
 
     test_dataset = datasets.MNIST(
         root= "./data",
         train= False,
         download = True,
+        transform = transform
     )
 
     train_dataset, val_dataset = random_split(
