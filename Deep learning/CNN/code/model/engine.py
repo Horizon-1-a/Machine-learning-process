@@ -15,6 +15,7 @@ def evaluate(model, val_dataloader, best_accuracy, loss_fn):
     device = next(model.parameters()).device
     loss_mean = 0.0
     n_iter = 0
+
     for x, y in val_dataloader:
         x, y = x.to(device), y.to(device)  # Đưa data lên GPU
         z = model(x)
